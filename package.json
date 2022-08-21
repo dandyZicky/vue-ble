@@ -1,0 +1,26 @@
+{
+  "name": "vue-ble",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 4173"
+  },
+  "dependencies": {
+    "@coreui/vue": "^4.3.1",
+    "@vueuse/core": "^9.1.0",
+    "quasar": "^2.7.7",
+    "vue": "^3.2.37",
+    "vue-accessible-color-picker": "^4.0.4",
+    "vue-color": "^2.8.1",
+    "vue-range-slider": "^0.6.0",
+    "vue-slider-component": "^4.1.0-beta.2",
+    "vuesax": "^3.12.2",
+    "vuex": "^4.0.2",
+    "web-bluetooth-vuex": "^0.1.16"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^3.0.1",
+    "vite": "^3.0.4"
+  }
+}
