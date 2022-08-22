@@ -66,12 +66,13 @@
         flex-direction: column;
         margin-top: 1em;
         justify-content: center;
-        row-gap: 40px;
+        row-gap: 30px;
     }
 
     .main-body > div {
         display: flex;
         justify-content: center;
+        font-size: 25px;
     }
 
     .ignore {
@@ -148,7 +149,7 @@
         position: fixed;
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1023px) {
         .content > div {
             font-size: large;
             margin-top: 0.3em;
@@ -196,6 +197,7 @@
 
         .main-body {
             margin: 1em 0 0 0;
+            row-gap: 20px;
         }
     }
 

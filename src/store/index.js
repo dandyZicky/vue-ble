@@ -1,6 +1,11 @@
 // store/index.js
  
 import {createStore} from "vuex";
+
+const led_init = []
+for(let i=0; i<=20; i++) {
+    led_init[i] = 0
+}
  
 export default createStore({
  state: {
@@ -9,15 +14,19 @@ export default createStore({
     error: null,
     windowWidth: window.windowWidth,
     brightness: 0,
-    color: '#ffffff',
-    characteristic: null
+    color: '#000000',
+    leds: led_init,
+    BLUETOOTH: null
  },
  getters: {
 
  },
  mutations: {
-    UPDATE_CHARACTERISTICS(state, characteristic) {
-        state.characteristic = characteristic
+    UPDATE_LEDS(state, arr) {
+        state.leds = arr
+    },
+    UPDATE_BLUETOOTH(state, bl) {
+        state.BLUETOOTH = bl
     },
     UPDATE_ERRORS(state, msg) {
         state.error = msg
@@ -36,26 +45,23 @@ export default createStore({
     },
     UPDATE_COLOR(state, color) {
         state.color = color
-    },
-    UPDATE_LEDIDX(state, led) {
-        state.ledIdx = led
     }
  },
  actions: {
-    showErr(context, msg) {
-        var error = context.state.error
-        error = msg
-        context.commit('UPDATE_ERRORS', error)
+    commit_colors(context, color_msg) {
+        var color = context.state.color
+        color = color_msg
+        context.commit('UPDATE_COLOR', color)
     },
-    validConnection(context, bool) {
-        var isConnected = context.state.isConnected
-        isConnected = bool
-        context.commit('UPDATE_CONNECTED', isConnected)
+    commit_ble(context, msg) {
+        var ble = context.state.BLUETOOTH
+        ble = msg
+        context.commit('UPDATE_BLUETOOTH', ble)
     },
-    getDevice(context, name) {
-        var device = context.state.device
-        device = name
-        context.commit('UPDATE_DEVICE', device)
+    commit_led(context,arr) {
+        var led = context.state.leds
+        led = arr
+        context.commit('UPDATE_LEDS', led)
     }
  },
 });

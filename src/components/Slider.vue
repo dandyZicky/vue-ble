@@ -13,7 +13,8 @@
       return {
         value: 0,
         windowWidth: window.innerWidth,
-        sendJSON
+        windowHeight: window.innerHeight,
+        sendJSON,
       }
     },
 
@@ -37,6 +38,7 @@
     methods: {
       myEventHandler(e) {
         this.windowWidth = window.innerWidth
+        this.windowHeight = window.innerHeight
         store.commit('UPDATE_WIDTH' ,this.windowWidth)
       }
     }
@@ -59,7 +61,7 @@
       ref="slider"
       v-model="value"
       direction="btt"
-      :height="300"
+      :height="windowHeight / 3"
       @change="sendData">
     </vue-slider>
   </div>

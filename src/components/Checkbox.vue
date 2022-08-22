@@ -1,10 +1,9 @@
 <script>
     import { CFormCheck } from "@coreui/vue";
     import { sendJSON } from "../assets/js/sendJSON";
-    import mixin from "../mixin"
+    import store from "../store";
 
     export default  {
-        mixins: [mixin],
         data() {
             return {
                 checkBoxes: [] ,
@@ -28,7 +27,8 @@
                 }
 
                 sendJSON.data.ledIndexs[id] = content
-
+                
+                store.dispatch('commit_led', sendJSON.data.ledIndexs)
                 sendJSON.sending()
             }
         }
@@ -38,8 +38,13 @@
 
 <template>
     <div v-if="$store.state.windowWidth >= 786">
-        <div style="display:inline; margin: 6px 6px 6px 6px" v-for="n in 20">
-            <CFormCheck style="cursor:pointer" :id="(n-1).toString()" @click="onChange"/> {{n}}
+        <div v-for="n in 20" style="display:inline">
+            <div v-if="$store.state.leds[n-1]" style="display:inline; margin: 6px 6px 6px 6px">
+                <CFormCheck checked style="cursor:pointer;" :id="(n-1).toString()" @click="onChange"/> {{n}}
+            </div>
+            <div v-else style="display:inline; margin: 6px 6px 6px 6px;">
+                <CFormCheck style="cursor:pointer;" :id="(n-1).toString()" @click="onChange"/> {{n}}
+            </div>
         </div>
     </div>
     
@@ -54,7 +59,7 @@
         </div>
     </div>
 
-    <div v-if="$store.state.windowWidth <= 484">
+    <div v-if="$store.state.windowWidth < 484">
         <div style="display: flex; justify-content: center;">
             <div style="display:inline" v-for="n in 5">
                 <CFormCheck :id="(n-1).toString()" @click="onChange"/> {{n}}

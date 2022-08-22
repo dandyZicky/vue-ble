@@ -1,7 +1,7 @@
 import { reactive } from "vue";
-import mixin from '../../mixin'
 import store from "../../store";
 
+const SERIAL_UUID = 0x1101
 const indexs = []
 
 for(let i = 0; i<20; i++) {
@@ -9,7 +9,6 @@ for(let i = 0; i<20; i++) {
 }
 
 export const sendJSON = reactive({
-    mixins: [mixin],
     data: {
         ledIndexs: indexs,
         color: '#ffffff',
@@ -18,9 +17,15 @@ export const sendJSON = reactive({
     async sending() {
         const dataJSON = JSON.stringify(this.data);
         var enc = new TextEncoder();
-        var encodedJSON = enc.encode(dataJSON);
-        console.log(encodedJSON);
+        const encodedJSON = enc.encode(dataJSON);
 
-        
+        console.log(dataJSON)
+        // console.log(encodedJSON)
+
+        if(store.state.BLUETOOTH[0].value) {
+            const service = await store.state.BLUETOOTH[4].value.getPrimaryService(SERIAL_UUID)
+            const serviceCharacteristics = await service.getCharacteristic(SERIAL_UUID)
+            serviceCharacteristics.writeValue(encodedJSON)
+        }
     }
 })

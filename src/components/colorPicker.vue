@@ -8,7 +8,7 @@
         },
         data() {
             return {
-                sendJSON
+                sendJSON,
             }
         },
         methods: {
@@ -17,19 +17,14 @@
                 sendJSON.data.color = e.cssColor
                 sendJSON.sending()
             }
-        }
+        },
     }
 </script>
 
 <template>
-<color-picker v-if="$store.state.windowWidth >= 484"
-                  style="min-width:calc(50%); max-width: 70%; cursor: pointer;" default-format="hex"
-                  alpha-channel="hide"
-                  color="#000000"
-                  @color-change="onchanging"/>
-<color-picker v-if="$store.state.windowWidth <= 484"
-                  style="min-width:15rem; cursor: pointer" default-format="hex"
-                  alpha-channel="hide"
-                  color="#000000"
-                  @color-change="onchanging"/>
+    <color-picker 
+                    style="min-width:calc(40%); max-width: 1024px; cursor: pointer;" default-format="hex"
+                    alpha-channel="hide"
+                    :color="$store.state.color"
+                    @color-change="onchanging"/>
 </template>

@@ -1,15 +1,12 @@
 <script setup>
   import {useBluetooth} from '@vueuse/core'
   import store from '../store';
-  import mixin from '../mixin';
   import {sendJSON} from '../assets/js/sendJSON'
 </script>
 
 <script>
 
-  const UUID = '00001101-0000-1000-8000-00805f9b34fb'
-  const SHORT_UUID = 0x0000
-  const HID_UUID = 0x1101
+  const SERIAL_UUID = 0x1101
 
   const {
     isConnected,
@@ -21,11 +18,16 @@
   } = useBluetooth({
     acceptAllDevices: true,
     optionalServices: [
-      HID_UUID
+      SERIAL_UUID
     ]
   })
+
+  var blarr = [isConnected, isSupported, device, requestDevice, server, error]
+
+  store.dispatch('commit_ble', blarr)
+
   export default {
-    mixins: [mixin],
+    name: "ButtonBLE",
     data() {
       return {
         isConnected,
@@ -41,15 +43,7 @@
       async setInfo() {
         store.commit('UPDATE_CONNECTED', isConnected)
         store.commit('UPDATE_DEVICE', device)
-        console.log("Connecting....")
-        const service = await server.value.getPrimaryService(HID_UUID)
-        console.log("Got Primary Service !")
-        const serviceCharacteristics = await service.getCharacteristic(HID_UUID)
-
-        console.log(serviceCharacteristics)
-        store.commit('UPDATE_CHARACTERISTICS', serviceCharacteristics)
-        // await serviceCharacteristics.writeValueWithResponse(sendJSON.data)
-
+        console.log("Setting Connection")
       },
       setError() {
         store.commit('UPDATE_ERRORS', error)
