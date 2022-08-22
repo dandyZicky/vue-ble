@@ -72,7 +72,7 @@
     .main-body > div {
         display: flex;
         justify-content: center;
-        font-size: 25px;
+        font-size: 27px;
     }
 
     .ignore {
@@ -89,7 +89,7 @@
         position: relative;
         background-color: #be3d4a;
         flex-wrap: wrap;
-        column-gap: calc(100% - 700px);
+        column-gap: calc(100% - 750px);
     }
 
     .name-container {
@@ -100,7 +100,7 @@
 
     .left-content {
         margin-left: 2em;
-        padding: 0.3em 0em 0em 1em;
+        padding: 0.58em 0em 0em 1em;
         justify-content: flex-start;
     }
     .content {
@@ -110,7 +110,7 @@
         display: inline-flex;
         position: relative;
         margin: 5px 15px 0 15px;
-        font-size:1.18em;
+        font-size:25px;
         color: #E5E9F0
 
 ;
@@ -151,7 +151,7 @@
 
     @media (max-width: 1023px) {
         .content > div {
-            font-size: large;
+            font-size: 20px;
             margin-top: 0.3em;
         }
 
@@ -165,7 +165,7 @@
             max-height: 40px;
         }
         .main-body > div {
-            font-size: medium;
+            font-size: 20px;
         }
 
         .left-content {
@@ -173,7 +173,7 @@
         }
     }
 
-    @media (max-width: 540px) {
+    @media (max-width: 567px) {
 
         .content {
             margin: 0 0 0 0;
@@ -198,6 +198,10 @@
         .main-body {
             margin: 1em 0 0 0;
             row-gap: 20px;
+        }
+
+        .main-body > div {
+            font-size: 17px;
         }
     }
 

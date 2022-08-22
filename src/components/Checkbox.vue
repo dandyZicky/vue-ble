@@ -37,55 +37,126 @@
 </script>
 
 <template>
-    <div v-if="$store.state.windowWidth >= 786">
-        <div v-for="n in 20" style="display:inline">
-            <div v-if="$store.state.leds[n-1]" style="display:inline; margin: 6px 6px 6px 6px">
-                <CFormCheck checked style="cursor:pointer;" :id="(n-1).toString()" @click="onChange"/> {{n}}
-            </div>
-            <div v-else style="display:inline; margin: 6px 6px 6px 6px;">
-                <CFormCheck style="cursor:pointer;" :id="(n-1).toString()" @click="onChange"/> {{n}}
+
+    <div v-if="$store.state.windowWidth >= 568">
+
+        <div style="display: flex; justify-content: center;" class="correct-margin">
+            <div v-for="n in 10" style="display: inline">
+                <div v-if="$store.state.leds[n-1]" style="display:inline">
+                    <div style="display: inline; justify-content: center;">
+                        <input type="checkbox" checked :id="(n-1).toString()" @click="onChange"/> {{n}}
+                    </div>
+                </div>
+
+                <div v-else>
+                    <div style="display: inline; justify-content: center;">
+                        <input type="checkbox" :id="(n-1).toString()" @click="onChange"/> {{n}}
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    
-    <div v-if="$store.state.windowWidth <= 786 && $store.state.windowWidth >= 484">
-        <div style="display: flex; justify-content: center;">
-            <div style="display:inline" v-for="n in 10">
-                <CFormCheck :id="(n-1).toString()" @click="onChange"/> {{n}}
+
+        <div style="display: flex; justify-content: center;" class="correct-margin">
+            <div v-for="n in 10" style="display: inline">
+                <div v-if="$store.state.leds[n+9]" style="display:inline">
+                    <div style="display: inline; justify-content: center;">
+                        <input type="checkbox" checked :id="(n+9).toString()" @click="onChange"/> {{n+10}}
+                    </div>
+                </div>
+
+                <div v-else>
+                    <div style="display: inline; justify-content: center;">
+                        <input type="checkbox" :id="(n+9).toString()" @click="onChange"/> {{n+10}}
+                    </div>
+                </div>
             </div>
         </div>
-        <div style="display:inline" v-for="k in 10">
-            <CFormCheck :id="(k+9).toString()" @click="onChange"/> {{k+10}}
-        </div>
+
     </div>
 
-    <div v-if="$store.state.windowWidth < 484">
-        <div style="display: flex; justify-content: center;">
+    <div v-if="$store.state.windowWidth < 568">
+
+        <div style="display: flex; justify-content: center;" class="correct-margin">
             <div style="display:inline" v-for="n in 5">
-                <CFormCheck :id="(n-1).toString()" @click="onChange"/> {{n}}
+                <span v-if="$store.state.leds[n-1]">
+                    <CFormCheck checked :id="(n-1).toString()" @click="onChange"/> {{n}}
+                </span>
+                <span v-if="!$store.state.leds[n-1]">
+                    <CFormCheck :id="(n-1).toString()" @click="onChange"/> {{n}}
+                </span>
             </div>
         </div>
 
-        <div style="display: flex; justify-content: center;">
+        <div style="display: flex; justify-content: center;" class="correct-margin">
             <div style="display:inline" v-for="k in 5">
-                <CFormCheck :id="(k+4).toString()" @click="onChange"/> {{k+5}}
+                <span v-if="$store.state.leds[k+4]">
+                    <CFormCheck checked :id="(k+4).toString()" @click="onChange"/> {{k+5}}
+                </span>
+                <span v-if="!$store.state.leds[k+4]">
+                    <CFormCheck :id="(k+4).toString()" @click="onChange"/> {{k+5}}
+                </span>
             </div>
         </div>
 
-        <div style="display: flex; justify-content: center;">
+        <div style="display: flex; justify-content: center;" class="correct-margin">
             <div style="display:inline" v-for="k in 5">
-                <CFormCheck :id="(k+9).toString()" @click="onChange"/> {{k+10}}
+                <span v-if="$store.state.leds[k+9]">
+                    <CFormCheck checked :id="(k+9).toString()" @click="onChange"/> {{k+10}}
+                </span>
+                <span v-if="!$store.state.leds[k+9]">
+                    <CFormCheck :id="(k+9).toString()" @click="onChange"/> {{k+10}}
+                </span>
             </div>
         </div>
 
-        <div style="display:inline" v-for="k in 5">
-            <CFormCheck :id="(k+14).toString()" @click="onChange"/> {{k+15}}
+        <div style="display: flex; justify-content: center;" class="correct-margin">
+            <div style="display:inline" v-for="k in 5">
+                <span v-if="$store.state.leds[k+14]">
+                    <CFormCheck checked :id="(k+14).toString()" @click="onChange"/> {{k+15}}
+                </span>
+                <span v-if="!$store.state.leds[k+14]">
+                    <CFormCheck :id="(k+14).toString()" @click="onChange"/> {{k+15}}
+                </span>
+            </div>
         </div>
+
     </div>
 </template>
 
 <style scoped>
-    .testing:hover {
-        cursor: pointer !important;
+
+    @media (min-width: 1024px) {
+        input[type=checkbox] {
+        /* Double-sized Checkboxes */
+            -ms-transform: scale(1.7); /* IE */
+            -moz-transform: scale(1.7); /* FF */
+            -webkit-transform: scale(1.7); /* Safari and Chrome */
+            -o-transform: scale(1.7); /* Opera */
+            transform: scale(1.7);
+        }
+
+        .correct-margin > div {
+            margin: 7px ;
+        }
+    }
+
+    @media (max-width: 1023px) {
+        input[type=checkbox] {
+        /* Double-sized Checkboxes */
+            -ms-transform: scale(1.4); /* IE */
+            -moz-transform: scale(1.4); /* FF */
+            -webkit-transform: scale(1.4); /* Safari and Chrome */
+            -o-transform: scale(1.4); /* Opera */
+            transform: scale(1.4);
+        }
+        .correct-margin > div {
+            margin: 0 6px 12px 6px ;
+        }
+    }
+
+    @media (max-width: 567px) {
+        .correct-margin > div {
+            margin: 0 6px 2px 6px ;
+        }
     }
 </style>

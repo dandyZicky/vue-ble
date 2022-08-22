@@ -40,10 +40,12 @@
       }
     },
     computed: {
-      async setInfo() {
-        store.commit('UPDATE_CONNECTED', isConnected)
-        store.commit('UPDATE_DEVICE', device)
-        console.log("Setting Connection")
+      setInfo() {
+        if(!store.state.isConnected) {
+          store.commit('UPDATE_CONNECTED', isConnected)
+          store.commit('UPDATE_DEVICE', device)
+          console.log("Setting Connection")
+        }
       },
       setError() {
         store.commit('UPDATE_ERRORS', error)

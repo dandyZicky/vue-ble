@@ -23,7 +23,7 @@
 
 <template>
     <color-picker 
-                    style="min-width:calc(40%); max-width: 1024px; cursor: pointer;" default-format="hex"
+                    style="width:calc(100% - 100px); max-width: 700px; cursor: pointer;" default-format="hex"
                     alpha-channel="hide"
                     :color="$store.state.color"
                     @color-change="onchanging"/>

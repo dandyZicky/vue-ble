@@ -49,7 +49,8 @@
 
   <div v-if="windowWidth < 1024" class="range-slider-hor">
     <vue-slider 
-      style="width: 1024px;min-width: calc(100%-10px)"
+      :width="windowWidth - 100"
+      style="min-width: calc(100%-40x)"
       ref="slider"
       v-model="value"
       @change="sendData">

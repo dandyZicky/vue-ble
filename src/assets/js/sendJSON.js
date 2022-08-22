@@ -20,7 +20,6 @@ export const sendJSON = reactive({
         const encodedJSON = enc.encode(dataJSON);
 
         console.log(dataJSON)
-        // console.log(encodedJSON)
 
         if(store.state.BLUETOOTH[0].value) {
             const service = await store.state.BLUETOOTH[4].value.getPrimaryService(SERIAL_UUID)
