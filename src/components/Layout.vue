@@ -45,20 +45,29 @@
 
     </div>
 
-    <div class="main-body">
-        <div v-if="$store.state.windowWidth < 1024">
-            <VueButtonBLE />
+    <div class="main-body-layout">
+        <div class="main-body">
+            <div v-if="$store.state.windowWidth < 1024">
+                <VueButtonBLE />
+            </div>
+            <div class="name-container" v-if="$store.state.isConnected">Device Name: {{$store.state.device.name}}</div>
+            <div><ColorPicker /></div>
+            <div class="ignore"><VueSlider /></div>
+            <div><Checkbox /></div>
         </div>
-        <div class="name-container" v-if="$store.state.isConnected">Device Name: {{$store.state.device.name}}</div>
-        <div><ColorPicker /></div>
-        <div class="ignore"><VueSlider /></div>
-        <div><Checkbox /></div>
     </div>
+
 </template>
 
 <style scoped>
     header {
         text-align: center;
+    }
+
+    .main-body-layout {
+        display: block;
+        height: 85vh;
+        margin-top: 3%;
     }
 
     .main-body {

@@ -44,13 +44,13 @@
             <div v-for="n in 10" style="display: inline">
                 <div v-if="$store.state.leds[n-1]" style="display:inline">
                     <div style="display: inline; justify-content: center;">
-                        <input type="checkbox" checked :id="(n-1).toString()" @click="onChange"/> {{n}}
+                        {{n}} <input type="checkbox" checked :id="(n-1).toString()" @click="onChange"/>
                     </div>
                 </div>
 
                 <div v-else>
                     <div style="display: inline; justify-content: center;">
-                        <input type="checkbox" :id="(n-1).toString()" @click="onChange"/> {{n}}
+                        {{n}} <input type="checkbox" :id="(n-1).toString()" @click="onChange"/> 
                     </div>
                 </div>
             </div>
@@ -60,13 +60,13 @@
             <div v-for="n in 10" style="display: inline">
                 <div v-if="$store.state.leds[n+9]" style="display:inline">
                     <div style="display: inline; justify-content: center;">
-                        <input type="checkbox" checked :id="(n+9).toString()" @click="onChange"/> {{n+10}}
+                         {{n+10}} <input type="checkbox" checked :id="(n+9).toString()" @click="onChange"/>
                     </div>
                 </div>
 
                 <div v-else>
                     <div style="display: inline; justify-content: center;">
-                        <input type="checkbox" :id="(n+9).toString()" @click="onChange"/> {{n+10}}
+                         {{n+10}} <input type="checkbox" :id="(n+9).toString()" @click="onChange"/>
                     </div>
                 </div>
             </div>
@@ -79,10 +79,10 @@
         <div style="display: flex; justify-content: center;" class="correct-margin">
             <div style="display:inline" v-for="n in 5">
                 <span v-if="$store.state.leds[n-1]">
-                    <CFormCheck checked :id="(n-1).toString()" @click="onChange"/> {{n}}
+                    <input type="checkbox" checked :id="(n-1).toString()" @click="onChange"/> {{n}}
                 </span>
                 <span v-if="!$store.state.leds[n-1]">
-                    <CFormCheck :id="(n-1).toString()" @click="onChange"/> {{n}}
+                    <input type="checkbox" :id="(n-1).toString()" @click="onChange"/> {{n}}
                 </span>
             </div>
         </div>
@@ -90,10 +90,10 @@
         <div style="display: flex; justify-content: center;" class="correct-margin">
             <div style="display:inline" v-for="k in 5">
                 <span v-if="$store.state.leds[k+4]">
-                    <CFormCheck checked :id="(k+4).toString()" @click="onChange"/> {{k+5}}
+                    <input type="checkbox" checked :id="(k+4).toString()" @click="onChange"/> {{k+5}}
                 </span>
                 <span v-if="!$store.state.leds[k+4]">
-                    <CFormCheck :id="(k+4).toString()" @click="onChange"/> {{k+5}}
+                    <input type="checkbox" :id="(k+4).toString()" @click="onChange"/> {{k+5}}
                 </span>
             </div>
         </div>
@@ -101,10 +101,10 @@
         <div style="display: flex; justify-content: center;" class="correct-margin">
             <div style="display:inline" v-for="k in 5">
                 <span v-if="$store.state.leds[k+9]">
-                    <CFormCheck checked :id="(k+9).toString()" @click="onChange"/> {{k+10}}
+                    <input type="checkbox" checked :id="(k+9).toString()" @click="onChange"/> {{k+10}}
                 </span>
                 <span v-if="!$store.state.leds[k+9]">
-                    <CFormCheck :id="(k+9).toString()" @click="onChange"/> {{k+10}}
+                    <input type="checkbox" :id="(k+9).toString()" @click="onChange"/> {{k+10}}
                 </span>
             </div>
         </div>
@@ -112,10 +112,10 @@
         <div style="display: flex; justify-content: center;" class="correct-margin">
             <div style="display:inline" v-for="k in 5">
                 <span v-if="$store.state.leds[k+14]">
-                    <CFormCheck checked :id="(k+14).toString()" @click="onChange"/> {{k+15}}
+                    <input type="checkbox" checked :id="(k+14).toString()" @click="onChange"/> {{k+15}}
                 </span>
                 <span v-if="!$store.state.leds[k+14]">
-                    <CFormCheck :id="(k+14).toString()" @click="onChange"/> {{k+15}}
+                    <input type="checkbox" :id="(k+14).toString()" @click="onChange"/> {{k+15}}
                 </span>
             </div>
         </div>
@@ -124,6 +124,9 @@
 </template>
 
 <style scoped>
+    input[type=checkbox]:hover {
+        cursor: pointer;
+    }
 
     @media (min-width: 1024px) {
         input[type=checkbox] {
