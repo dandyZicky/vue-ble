@@ -19,7 +19,7 @@ export const sendJSON = reactive({
         var enc = new TextEncoder();
         const encodedJSON = enc.encode(dataJSON);
 
-        console.log(dataJSON)
+        // console.log(encodedJSON)
 
 
         if(store.state.BLUETOOTH[0].value) {
