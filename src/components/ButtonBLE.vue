@@ -51,15 +51,15 @@
           const port = await navigator.serial.requestPort()
           .then((response) => {
             selectedPort = response
-            this.isConnected = true
           })
           .catch((error) => {
             this.error_request = error
           });
-
+          
+          await selectedPort.open({baudRate: 9600})
           console.log(selectedPort)
           store.commit('UPDATE_SERVER', selectedPort)
-          await selectedPort.open({baudRate: 9600})
+          this.isConnected = true
           console.log('Succesfully opened the serial port!')
 
         }
