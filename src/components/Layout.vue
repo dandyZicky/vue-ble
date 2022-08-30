@@ -9,9 +9,7 @@
     <div class="top-bar">
 
         <div class="left-content">
-            <div v-if="$store.state.windowWidth >= 1024">
-                <VueButtonBLE />
-            </div>
+            <VueButtonBLE />
         </div>
 
         <div class="content">
@@ -47,9 +45,9 @@
 
     <div class="main-body-layout">
         <div class="main-body">
-            <div v-if="$store.state.windowWidth < 1024">
+            <!-- <div v-if="$store.state.windowWidth < 1024">
                 <VueButtonBLE />
-            </div>
+            </div> -->
             <!-- <div class="name-container" v-if="$store.state.isConnected">Device Name: {{$store.state.device.name}}</div> -->
             <div><ColorPicker /></div>
             <div class="ignore"><VueSlider /></div>
@@ -178,12 +176,22 @@
         }
 
         .left-content {
-            display: none;
+            display: flex;
+            flex-direction: column;
+            margin: 0 0 0 0;
+            padding: 0 0 0 0;
+            justify-content: center;
         }
     }
 
     @media (max-width: 567px) {
-
+        .left-content {
+            display: flex;
+            flex-direction: column;
+            margin: 0.5em 0 0 0;
+            padding: 0 0 0 0;
+            justify-content: center;
+        }
         .content {
             margin: 0 0 0 0;
         }
@@ -191,10 +199,6 @@
         .content > div {
             font-size: smaller;
             margin: 12px 7px 0px 7px;
-            padding: 0 0 0 0;
-        }
-
-        .left-content {
             padding: 0 0 0 0;
         }
 

@@ -65,6 +65,9 @@
         }
         catch(error) {
           console.log(error)
+          if(this.isConnected == true) {
+            await selectedPort.close()
+          }
           this.isConnected = false
           this.error_request = error
         }

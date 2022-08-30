@@ -62,7 +62,7 @@
       ref="slider"
       v-model="value"
       direction="btt"
-      :height="windowHeight / 3"
+      :height="windowHeight / 5 + 60"
       @change="sendData">
     </vue-slider>
   </div>
