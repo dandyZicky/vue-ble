@@ -16,7 +16,8 @@ export default createStore({
     brightness: 0,
     color: '#000000',
     leds: led_init,
-    BLUETOOTH: null
+    BLUETOOTH: null,
+    server: false
  },
  getters: {
 
@@ -45,6 +46,9 @@ export default createStore({
     },
     UPDATE_COLOR(state, color) {
         state.color = color
+    },
+    UPDATE_SERVER(state, server) {
+        state.server = server
     }
  },
  actions: {
@@ -62,6 +66,11 @@ export default createStore({
         var led = context.state.leds
         led = arr
         context.commit('UPDATE_LEDS', led)
+    },
+    commit_server(context, payload) {
+        var serv = context.state.server
+        serv = payload
+        context.commit('UPDATE_SERVER', serv)
     }
  },
 });

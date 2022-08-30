@@ -50,7 +50,7 @@
             <div v-if="$store.state.windowWidth < 1024">
                 <VueButtonBLE />
             </div>
-            <div class="name-container" v-if="$store.state.isConnected">Device Name: {{$store.state.device.name}}</div>
+            <!-- <div class="name-container" v-if="$store.state.isConnected">Device Name: {{$store.state.device.name}}</div> -->
             <div><ColorPicker /></div>
             <div class="ignore"><VueSlider /></div>
             <div><Checkbox /></div>

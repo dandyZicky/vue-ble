@@ -15,17 +15,13 @@ export const sendJSON = reactive({
         intensity: 0
     },
     async sending() {
-        const dataJSON = JSON.stringify(this.data);
-        var enc = new TextEncoder();
-        const encodedJSON = enc.encode(dataJSON);
-
-        // console.log(encodedJSON)
-
-
-        if(store.state.BLUETOOTH[0].value) {
-            const service = await store.state.BLUETOOTH[4].value.getPrimaryService(SERIAL_UUID)
-            const serviceCharacteristics = await service.getCharacteristic(SERIAL_UUID)
-            serviceCharacteristics.writeValue(encodedJSON)
+        if(store.state.server.writable) {
+            const writer = store.state.server.writable.getWriter()
+            const dataJSON = JSON.stringify(this.data)
+            const enc = new TextEncoder()
+            const encodedJSON = enc.encode(dataJSON)
+            await writer.write(encodedJSON)
+            writer.releaseLock();
         }
     }
 })
